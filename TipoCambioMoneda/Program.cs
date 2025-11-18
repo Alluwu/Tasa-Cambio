@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using TipoCambioMoneda.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 

@@ -1,5 +1,8 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+
+namespace TipoCambioMoneda.Entities;
+
 [Table("bitacora_tasa_cambio")]
 public class BitacoraTasaCambio
 {
