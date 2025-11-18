@@ -1,0 +1,6 @@
+@TipoCambioMoneda_HostAddress = http://localhost:5020
+
+GET {{TipoCambioMoneda_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
