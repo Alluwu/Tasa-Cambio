@@ -12,8 +12,8 @@ using TipoCambioMoneda.Data;
 namespace TipoCambioMoneda.Migrations
 {
     [DbContext(typeof(TasaCambioDBContext))]
-    [Migration("20251118022751_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20251119025252_IdAutoGenerate")]
+    partial class IdAutoGenerate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -25,7 +25,7 @@ namespace TipoCambioMoneda.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("BitacoraTasaCambio", b =>
+            modelBuilder.Entity("TipoCambioMoneda.Entities.BitacoraTasaCambio", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
