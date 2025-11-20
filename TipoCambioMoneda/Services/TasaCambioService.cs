@@ -188,7 +188,7 @@ public class TasaCambioService : ITasaCambioService
                 request.Page = totalPages;
 
             var items = await query
-                .OrderByDescending(b => b.Id)
+                .OrderByDescending(b => b.FechaTipoCambio)
                 .ThenByDescending(b => b.FechaConsulta)
                 .Skip((request.Page - 1) * request.PageSize)
                 .Take(request.PageSize)
