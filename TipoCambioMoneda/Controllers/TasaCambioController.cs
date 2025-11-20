@@ -26,4 +26,11 @@ public class TasaCambioController : ControllerBase
         var resultado = await _service.TipoCambioMonedaRango(request);
         return resultado.ToHttpResponse(this);
     }
+
+    [HttpGet("bitacora")]
+    public async Task<IActionResult> BitacoraPaginado([FromQuery]PaginadoRequest  request)
+    {
+        var resultado = await _service.ObtenerBitacoraPaginado(request);
+        return resultado.ToHttpResponse(this);
+    }
 }

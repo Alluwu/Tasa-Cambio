@@ -6,4 +6,6 @@ public interface ITasaCambioService
 {
     public Task<ActionResultResponse> TipoCambioDia();
     public Task<ActionResultResponse> TipoCambioMonedaRango(TipoCambioMonedaRequest request);
+
+    public Task<ActionResultResponse> ObtenerBitacoraPaginado(PaginadoRequest request);
 }
