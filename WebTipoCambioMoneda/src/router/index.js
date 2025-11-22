@@ -1,18 +1,21 @@
-import { createRouter, createWebHistory } from 'vue-router';
-import TasaCambioDiaView from '@/views/TasaCambioDiaView.vue';
-import TasaCambioRangoView from '@/views/TasaCambioRangoView.vue';
-import BitacoraView from '@/views/BitacoraView.vue';
+import { createRouter, createWebHistory } from 'vue-router'
+
+import TipoCambioView from '@/views/TipoCambioView.vue'
+
+
 
 const routes = [
-  { path: '/', redirect: '/tasa-dia' },
-  { path: '/tasa-dia', component: TasaCambioDiaView },
-  { path: '/tasa-rango', component: TasaCambioRangoView },
-  { path: '/bitacora', component: BitacoraView },
-];
+  { 
+    path: '/', 
+    name: 'home',
+    component: TipoCambioView 
+  },
+
+]
 
 const router = createRouter({
   history: createWebHistory(),
   routes,
-});
+})
 
-export default router;
+export default router

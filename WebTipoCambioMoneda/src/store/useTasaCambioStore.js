@@ -44,7 +44,7 @@ export const useTasaCambioStore = defineStore('tasaCambio', {
       rangoRequest: {
         fechaInicio: '',
         fechaFin: '',
-        moneda: 'USD',
+        moneda: '02',
       },
       rangoResultado: null,
       rangoLoading: false,
