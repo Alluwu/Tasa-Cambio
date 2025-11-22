@@ -12,6 +12,26 @@ const defaultBitacoraState = () => ({
   fechaFin: '',
 });
 
+
+function getBackendErrorMessage(error, defaultMsg) {
+  
+  const data = error?.response?.data;
+
+  if (!data) {
+    return error?.message || defaultMsg;
+  }
+
+  if (typeof data === 'string') {
+    return data;
+  }
+
+  return (
+    data.mensaje || 
+    data.message || 
+    defaultMsg
+  );
+}
+
 export const useTasaCambioStore = defineStore('tasaCambio', {
   state: () => {
     const storedBitacora = localStorage.getItem('bitacoraState');
@@ -46,14 +66,16 @@ export const useTasaCambioStore = defineStore('tasaCambio', {
       try {
         const res = await apiGetTasaDia();
         const payload = res.data ?? res;
+
         this.tasaDia = payload;
         localStorage.setItem('tasaDia', JSON.stringify(this.tasaDia));
 
-        const msg = res.message ?? payload.message ?? 'Tasa del día actualizada';
+        const msg = payload.message ?? res.message ?? 'Tasa del día actualizada';
         this.mostrarMensaje(msg);
-      } catch {
-        this.message = 'Error al consultar la tasa del día';
-        toast.error(this.message);
+      } catch (error) {
+        const msg = getBackendErrorMessage(error, 'Error al consultar la tasa del día');
+        this.message = msg;
+        toast.error(msg);
       } finally {
         this.tasaDiaLoading = false;
       }
@@ -73,11 +95,16 @@ export const useTasaCambioStore = defineStore('tasaCambio', {
         const payload = res.data ?? res;
 
         this.rangoResultado = payload;
-        const msg = res.message ?? payload.message ?? 'Consulta de rango ejecutada';
+
+        const msg = payload.message ?? res.message ?? 'Consulta de rango ejecutada';
         this.mostrarMensaje(msg);
-      } catch {
-        this.message = 'Error al consultar el rango de tipo de cambio';
-        toast.error(this.message);
+      } catch (error) {
+        const msg = getBackendErrorMessage(
+          error,
+          'Error al consultar el rango de tipo de cambio'
+        );
+        this.message = msg;
+        toast.error(msg);
       } finally {
         this.rangoLoading = false;
       }
@@ -108,9 +135,10 @@ export const useTasaCambioStore = defineStore('tasaCambio', {
 
         localStorage.setItem('bitacoraState', JSON.stringify(this.bitacora));
         this.message = payload.message ?? res.message ?? '';
-      } catch {
-        this.message = 'Error al consultar la bitácora';
-        toast.error(this.message);
+      } catch (error) {
+        const msg = getBackendErrorMessage(error, 'Error al consultar la bitácora');
+        this.message = msg;
+        toast.error(msg);
       } finally {
         this.bitacoraLoading = false;
       }
