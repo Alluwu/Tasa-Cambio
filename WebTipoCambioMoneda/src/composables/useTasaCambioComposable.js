@@ -1,5 +1,5 @@
 import { storeToRefs } from 'pinia';
-import { useTasaCambioStore } from '@/store/tipoCambio/useTasaCambioStore';
+import { useTasaCambioStore } from '@/store/useTasaCambioStore';
 
 export const useTasaCambioComposable = () => {
   const store = useTasaCambioStore();
